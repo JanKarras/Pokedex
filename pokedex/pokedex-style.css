@@ -27,11 +27,16 @@ header{
 }
 
 .card {
-    width: calc(47% - 10px); /* 50% Breite für 2 Karten nebeneinander */
+    width: calc(46% - 10px); /* 50% Breite für 2 Karten nebeneinander */
     margin-bottom: 10px; /* Abstand zwischen den Karten */
     padding: 10px;
     border-radius: 16px;
   }
+
+.img{
+    width: 50%;
+    height: auto;
+}
 
 .id{
     display: flex;
@@ -43,12 +48,15 @@ header{
 h2{
     color:  white;
     margin-top: 4vh;
+    margin-bottom: 0;
+    margin-top: 0;
 }
 
 .type{
     color: white;
     margin-top: 10px;
-    font-size: 1.3em;
+    font-size: 18px;
+
 }
 
 .type_img_container{
@@ -72,7 +80,7 @@ h2{
 }
 
 .display-none{
-    display: none;
+    display: none !important;
 }
 
                                         /*Pokedex-End*/
@@ -85,9 +93,8 @@ h2{
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     transition: right 0.3s;
-    color: #000; 
+    color: #000;
 }
-
 
 .visible {
     right: 0;
@@ -110,7 +117,7 @@ h2{
 .close-line {
     width: 100%;
     height: 2px;
-    background-color: #000; 
+    background-color: #000;
     position: absolute;
 }
 
@@ -143,11 +150,15 @@ h2{
     height: 40vh;
 }
 
+.standart_info{
+    padding-top: 3vh;
+}
+
 .img_detail_container{
     display: flex;
     align-items: center;
     justify-content: center;
-    
+
 }
 
 #img_detail{
@@ -163,10 +174,7 @@ h2{
     margin-bottom: 2vh;
 }
 
-h2{
-    margin-bottom: 0;
-    margin-top: 0;
-}
+
 
 .types{
     display: flex;
@@ -292,6 +300,10 @@ ul{
     flex-direction: column;
 }
 
+.text-aligen-center{
+    text-align: center;
+}
+
 #first-evolution{
     display: flex;
     justify-content: space-between;
@@ -302,16 +314,6 @@ ul{
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-#first-evolution{
-    display: flex;
-    text-align: center;
-}
-
-#second-evolution{
-    display: flex;
-    text-align: center;
 }
 
 .arrow {
@@ -319,7 +321,7 @@ ul{
     align-items: center;
     flex-direction: column-reverse;
   }
-  
+
   .arrow::before {
     content: "\2192"; /* Right arrow character */
     margin: 0 10px;
@@ -331,7 +333,11 @@ ul{
 
 #moves_list{
     list-style-type: none;
+}
 
+.moves{
+    overflow-y: auto;
+    max-height: 50vh;
 }
 
 .moves_list_element{
@@ -354,10 +360,29 @@ ul{
     opacity: 0;
     transition: opacity 0.5s ease; /* Übergangseigenschaften hinzugefügt */
   }
-  
+
   .about.active, .stats.active, .evolution.active, .moves.active {
     display: block;
     opacity: 1;
   }
 
                                         /*Show-Detail-End*/
+
+                                        /*footer*/
+#footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.button{
+
+}
+
+.hr{
+    border:  none;
+    border-top: 1px solid #ccc;
+}
+
+                                        /*reponsiv*/

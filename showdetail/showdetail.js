@@ -27,7 +27,8 @@ function render_show_detail(pokemon)
             break;
         }
     }
-    document.getElementById('img_detail').src = pokemon['sprites']['front_default'];
+    let linkpart = pokemon['sprites']['front_default'].split("https"); //API false link in array
+    document.getElementById('img_detail').src = "https" + linkpart[2];
     load_about(pokemon)
     load_stats(pokemon)
     load_evolution(pokemon)
@@ -119,7 +120,7 @@ async function render_evolution(size){
         content.innerHTML += `<div id="second-evolution"></div>`;
     content = document.getElementById('first-evolution');
     content.innerHTML = `
-        <div>
+        <div class="text-aligen-center">
             <img id ="0EvoImg"src="">
             <h3 id ="0EvoName"></h3>
         </div>
@@ -129,8 +130,8 @@ async function render_evolution(size){
         content.innerHTML += `
             <div id="arrow1" class="arrow">
                 <span id="0to1Lv"></span>
-            </div>   
-            <div>
+            </div>
+            <div class="text-aligen-center">
                 <img id ="1EvoImg"src="">
                 <h3 id ="1EvoName"></h3>
             </div>
@@ -140,14 +141,14 @@ async function render_evolution(size){
     {
         content = document.getElementById('second-evolution')
         content.innerHTML = `
-            <div>
+            <div class="text-aligen-center">
                 <img id ="3EvoImg" src="">
                 <h3 id ="3EvoName"></h3>
             </div>
             <div id="arrow2" class="arrow">
                 <span id="1to2Lv"></span>
             </div>
-                <div>
+                <div class="text-aligen-center">
                     <img id ="2EvoImg" src="">
                     <h3 id ="2EvoName"></h3>
                 </div>
@@ -199,11 +200,11 @@ async function load_moves(pokemon){
 
 function get_moves(pokemon) {
     let moves = [];
-  
+
     for (let i = 0; i < pokemon['moves'].length; i++) {
       const move = pokemon['moves'][i];
       const method = move['version_group_details'][0]['move_learn_method']['name'];
-  
+
       if (method === "level-up") {
         const moveData = {
           name: move['move']['name'],
@@ -211,11 +212,11 @@ function get_moves(pokemon) {
         };
         moves.push(moveData);
       }
-    } 
+    }
     moves.sort((a, b) => a.lv - b.lv);
     return moves;
 }
-  
+
 
 function close_detail(){
     document.getElementById('pokedex').classList.remove('display-none');
@@ -224,6 +225,10 @@ function close_detail(){
     document.getElementById('showdetail').classList.add('display-none');
     document.getElementById('body').style.backgroundColor = 'white';
     document.getElementById('body').classList.remove('overflow');
+    document.getElementById('footer').classList.remove('display-none')
+    document.getElementById('footer').classList.add('display');
+    document.getElementById('hr').classList.remove('display-none')
+    document.getElementById('hr').classList.add('display');
 }
 
 function move_nav(sectionName) {
@@ -240,4 +245,3 @@ function move_nav(sectionName) {
       selectedSection.classList.add('active');
     }
 }
-  

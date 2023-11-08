@@ -29,7 +29,7 @@ async function init(number){
 
 function toggleMenu() {
     const menu = document.getElementById("menu");
-    
+
     if (menu.classList.contains("hidden")) {
         menu.classList.remove("hidden");
         menu.classList.add("visible");
@@ -58,7 +58,7 @@ async function fill_array(array)
 
 async function loadpokemon(gen)
 {
-    
+
     let content = document.getElementById('content')
     content.innerHTML = '';
     let sum_gen = sum(gen,true)
@@ -122,10 +122,11 @@ function renderdetails(pokemon, i){
         }
         else
         {
-            document.getElementById('type1'+i).innerHTML = erstesZeichenGroßschreiben(pokemon['types'][0]['type']['name']);    
+            document.getElementById('type1'+i).innerHTML = erstesZeichenGroßschreiben(pokemon['types'][0]['type']['name']);
             addcolor(pokemon['types'][0]['type']['name'], i);
         }
-        document.getElementById('img'+i).src = pokemon['sprites']['front_default'];
+        let linkpart = pokemon['sprites']['front_default'].split("https"); //API false link in array
+        document.getElementById('img'+i).src = "https" + linkpart[2];
 }
 
 function addcolor(type, i){
@@ -152,6 +153,10 @@ async function select_pokemon(i)
     document.getElementById('spezefic_information').classList.add('display');
     document.getElementById('spezefic_information').classList.remove('display-none');
     document.getElementById('body').classList.add('overflow');
+    document.getElementById('footer').classList.add('display-none');
+    document.getElementById('footer').classList.remove('display');
+    document.getElementById('hr').classList.add('display-none');
+    document.getElementById('hr').classList.remove('display');
     show_deatil(i);
 }
 
