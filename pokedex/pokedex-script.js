@@ -70,9 +70,7 @@ async function loadpokemon(gen)
             <div class="id" id="id${i}"></div>
             <h2 id="name${i}"></h2>
             <div class="type_img_container">
-                <div class="type-container">
-                    <div class="type" id="type1${i}"></div>
-                    <div class="type" id="type2${i}"></div>
+                <div id="type_container${i}" class="type-container">
                 </div>
                 <img class="img" id="img${i}" src="" loading="lazy">
             </div>
@@ -111,30 +109,49 @@ function erstesZeichenGroßschreiben(text) {
     return ersterBuchstabeGroß + text.slice(1);
   }
 
+
 function renderdetails(pokemon, i){
     document.getElementById('id'+i).innerHTML = '#' + formatierePokemonID(pokemon['id']);
         document.getElementById('name'+i).innerHTML = erstesZeichenGroßschreiben(pokemon['name']);
         if(pokemon['types'].length == 2)
         {
+            document.getElementById('type_container' + i).innerHTML = `
+            <div class="type" id="type1${i}"></div>
+            <div class="type" id="type2${i}"></div>`;
             document.getElementById('type1'+i).innerHTML = erstesZeichenGroßschreiben(pokemon['types'][0]['type']['name']);
+            addcolor_type(pokemon['types'][0]['type']['name'], document.getElementById('type1'+i));
             document.getElementById('type2'+i).innerHTML = erstesZeichenGroßschreiben(pokemon['types'][1]['type']['name']);
-            addcolor(pokemon['types'][0]['type']['name'], i);
+            addcolor_type(pokemon['types'][1]['type']['name'], document.getElementById('type2'+i));
+            addcolor_card(pokemon['types'][0]['type']['name'], i);
         }
         else
         {
+            document.getElementById('type_container' + i).innerHTML = `
+            <div class="type" id="type1${i}"></div>`;
             document.getElementById('type1'+i).innerHTML = erstesZeichenGroßschreiben(pokemon['types'][0]['type']['name']);
-            addcolor(pokemon['types'][0]['type']['name'], i);
+            addcolor_type(pokemon['types'][0]['type']['name'], document.getElementById('type1'+i));
+            addcolor_card(pokemon['types'][0]['type']['name'], i);
         }
         let linkpart = pokemon['sprites']['front_default'].split("https");          //API false link in array
-        document.getElementById('img'+i).src = pokemon['sprites']['front_default']  //"https" + linkpart[2];
+        document.getElementById('img'+i).src = pokemon['sprites']['front_default']//"https" + linkpart[2];
 }
 
-function addcolor(type, i){
+function addcolor_card(type, i){
     let card = document.getElementById('card'+i)
     for (let j = 0; j < types_color_array.length; j++) {
         if(types_color_array[j]['type'] == type)
         {
             card.style.backgroundColor = types_color_array[j]['colorCode'];
+            break;
+        }
+    }
+}
+
+function addcolor_type(type, type_div){
+    for (let j = 0; j < types_color_array.length; j++) {
+        if(types_color_array[j]['type'] == type)
+        {
+            type_div.style.backgroundColor = types_color_array[j]['colorCode_type'];
             break;
         }
     }

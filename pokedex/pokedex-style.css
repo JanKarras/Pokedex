@@ -50,24 +50,44 @@ h2{
     margin-top: 4vh;
     margin-bottom: 0;
     margin-top: 0;
+    font-size: 22px;
 }
 
 .type{
     color: white;
     margin-top: 10px;
-    font-size: 18px;
-
+    font-size: 10px;
+    border: solid #ccc 1px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 5px;
 }
 
-.type_img_container{
+.font_size_18{
+    font-size: 18px !important;
+}
+
+.img_type_container_showdetail{
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: left;
+    flex: 1;
 }
 
 .type-container{
-    width: 50%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
+.type_img_container{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
 
 .card-container {
     display: flex;
@@ -148,22 +168,21 @@ h2{
 
 .height_40{
     height: 40vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .standart_info{
     padding-top: 3vh;
-}
-
-.img_detail_container{
     display: flex;
-    align-items: center;
-    justify-content: center;
-
+    flex-direction: column;
+    flex: 1;
 }
 
 #img_detail{
-    width: 50%;
-    height: auto;
+    width: auto;
+    height: 100%;
+    padding-right: 10vh;
 }
 
 .name_id_container{
@@ -178,9 +197,9 @@ h2{
 
 .types{
     display: flex;
-    width: 30%;
-    justify-content: space-between;
     color: white;
+    justify-content: start;
+    flex-direction: column;
 }
 
 .padding_left_5vw
@@ -257,7 +276,10 @@ ul{
 
 .stats_list{
   display: flex;
+  flex: 1;
+  align-items: center;
 }
+
 
 .bar {
     display: flex;
@@ -345,7 +367,6 @@ ul{
 }
 
 .column_moves{
-    display: inline-block;
     vertical-align: top;
     list-style-type: none;
     padding: 0;
@@ -363,8 +384,15 @@ ul{
 
   .about.active, .stats.active, .evolution.active, .moves.active {
     display: block;
+    display: flex;
+    flex-direction: column;
+    flex:1;
     opacity: 1;
   }
+
+.padding_right{
+    padding-right: 3vw;
+}
 
                                         /*Show-Detail-End*/
 
@@ -373,6 +401,12 @@ ul{
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+}
+
+.spez_info_cont{
+    height: 100%;
+    display: flex;
     flex-direction: column;
 }
 
@@ -386,3 +420,10 @@ ul{
 }
 
                                         /*reponsiv*/
+
+@media (min-width: 500px)
+{
+    .type{
+        font-size: 18px;
+    }
+}

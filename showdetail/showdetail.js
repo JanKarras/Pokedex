@@ -6,17 +6,28 @@ async function show_deatil(number){
     render_show_detail(pokemon);
 }
 
+
 function render_show_detail(pokemon)
 {
     document.getElementById('name-deatil').innerHTML = erstesZeichenGroßschreiben(pokemon['name']);
     if(pokemon['types'].length == 2)
     {
+        document.getElementById('type_container_showdetail').innerHTML = `
+        <div class="type font_size_18" id="type1-detail"></div>
+        <div class="type font_size_18" id="type2-detail"></div>
+        `;
         document.getElementById('type1-detail').innerHTML = erstesZeichenGroßschreiben(pokemon['types'][0]['type']['name']);
+        addcolor_type(pokemon['types'][0]['type']['name'], document.getElementById('type1-detail'))
         document.getElementById('type2-detail').innerHTML = erstesZeichenGroßschreiben(pokemon['types'][1]['type']['name']);
+        addcolor_type(pokemon['types'][1]['type']['name'], document.getElementById('type2-detail'))
     }
     else
     {
+        document.getElementById('type_container_showdetail').innerHTML = `
+        <div class="type font_size_18" id="type1-detail"></div>
+        `;
         document.getElementById('type1-detail').innerHTML = erstesZeichenGroßschreiben(pokemon['types'][0]['type']['name']);
+        addcolor_type(pokemon['types'][0]['type']['name'], document.getElementById('type1-detail'))
     }
     document.getElementById('id-detail').innerHTML = '#' + formatierePokemonID(pokemon['id']);
     let body_detail = document.getElementById('body');
@@ -191,8 +202,8 @@ async function load_moves(pokemon){
         const lv = moves[i]['lv']
         content.innerHTML += `
                 <li class="moves_list_element">
-                    <div>${lv}</div>
-                    <div>${erstesZeichenGroßschreiben(name)}</div>
+                    <div class="padding_right">Lv: ${lv}</div>
+                    <div class="padding_right">${erstesZeichenGroßschreiben(name)}</div>
                 </li>
             `
     }
