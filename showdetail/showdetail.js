@@ -27,8 +27,8 @@ function render_show_detail(pokemon)
             break;
         }
     }
-    let linkpart = pokemon['sprites']['front_default'].split("https"); //API false link in array
-    document.getElementById('img_detail').src = "https" + linkpart[2];
+    let linkpart = pokemon['sprites']['front_default'].split("https");                  //API false link in array
+    document.getElementById('img_detail').src = pokemon['sprites']['front_default']     //"https" + linkpart[2];
     load_about(pokemon)
     load_stats(pokemon)
     load_evolution(pokemon)

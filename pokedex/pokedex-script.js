@@ -125,8 +125,8 @@ function renderdetails(pokemon, i){
             document.getElementById('type1'+i).innerHTML = erstesZeichenGroßschreiben(pokemon['types'][0]['type']['name']);
             addcolor(pokemon['types'][0]['type']['name'], i);
         }
-        let linkpart = pokemon['sprites']['front_default'].split("https"); //API false link in array
-        document.getElementById('img'+i).src = "https" + linkpart[2];
+        let linkpart = pokemon['sprites']['front_default'].split("https");          //API false link in array
+        document.getElementById('img'+i).src = pokemon['sprites']['front_default']  //"https" + linkpart[2];
 }
 
 function addcolor(type, i){
