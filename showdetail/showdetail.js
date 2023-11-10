@@ -9,16 +9,16 @@ async function show_deatil(number){
 
 function render_show_detail(pokemon)
 {
-    document.getElementById('name-deatil').innerHTML = erstesZeichenGroßschreiben(pokemon['name']);
+    document.getElementById('name-deatil').innerHTML = cap1stletter(pokemon['name']);
     if(pokemon['types'].length == 2)
     {
         document.getElementById('type_container_showdetail').innerHTML = `
         <div class="type font_size_18" id="type1-detail"></div>
         <div class="type font_size_18" id="type2-detail"></div>
         `;
-        document.getElementById('type1-detail').innerHTML = erstesZeichenGroßschreiben(pokemon['types'][0]['type']['name']);
+        document.getElementById('type1-detail').innerHTML = cap1stletter(pokemon['types'][0]['type']['name']);
         addcolor_type(pokemon['types'][0]['type']['name'], document.getElementById('type1-detail'))
-        document.getElementById('type2-detail').innerHTML = erstesZeichenGroßschreiben(pokemon['types'][1]['type']['name']);
+        document.getElementById('type2-detail').innerHTML = cap1stletter(pokemon['types'][1]['type']['name']);
         addcolor_type(pokemon['types'][1]['type']['name'], document.getElementById('type2-detail'))
     }
     else
@@ -26,7 +26,7 @@ function render_show_detail(pokemon)
         document.getElementById('type_container_showdetail').innerHTML = `
         <div class="type font_size_18" id="type1-detail"></div>
         `;
-        document.getElementById('type1-detail').innerHTML = erstesZeichenGroßschreiben(pokemon['types'][0]['type']['name']);
+        document.getElementById('type1-detail').innerHTML = cap1stletter(pokemon['types'][0]['type']['name']);
         addcolor_type(pokemon['types'][0]['type']['name'], document.getElementById('type1-detail'))
     }
     document.getElementById('id-detail').innerHTML = '#' + formatierePokemonID(pokemon['id']);
@@ -50,13 +50,13 @@ function render_show_detail(pokemon)
 async function load_about(pokemon){
     let resp = await fetch(pokemon['species']['url'])
     let species = await (resp.json());
-    document.getElementById('species').innerHTML = erstesZeichenGroßschreiben(species['genera'][7]['genus']);
+    document.getElementById('species').innerHTML = cap1stletter(species['genera'][7]['genus']);
     document.getElementById('height').innerHTML = pokemon['height']*10 + ' cm';
     document.getElementById('weigth').innerHTML = pokemon['weight']/10 + ' kg';
     document.getElementById('abilities').innerHTML = '';
     for (let i = 0; i < pokemon['abilities'].length; i++) {
         let abilities = document.getElementById('abilities')
-        abilities.innerHTML += erstesZeichenGroßschreiben(pokemon['abilities'][i]['ability']['name']);
+        abilities.innerHTML += cap1stletter(pokemon['abilities'][i]['ability']['name']);
         if(i != pokemon['abilities'].length - 1)
         {
             abilities.innerHTML += ', ';
@@ -67,7 +67,7 @@ async function load_about(pokemon){
     document.getElementById('egg_groups').innerHTML = '';
     for (let i = 0; i < species['egg_groups'].length; i++) {
         let abilities = document.getElementById('egg_groups')
-        abilities.innerHTML += erstesZeichenGroßschreiben(species['egg_groups'][i]['name']);
+        abilities.innerHTML += cap1stletter(species['egg_groups'][i]['name']);
         if(i != species['egg_groups'].length - 1)
         {
             abilities.innerHTML += ', ';
@@ -132,8 +132,8 @@ async function render_evolution(size){
     content = document.getElementById('first-evolution');
     content.innerHTML = `
         <div class="text-aligen-center">
-            <img id ="0EvoImg"src="">
-            <h3 id ="0EvoName"></h3>
+            <img class="evo_img" id ="0EvoImg"src="">
+            <h3 class="evo_name" id ="0EvoName"></h3>
         </div>
         `;
     if(size >= 2)
@@ -143,8 +143,8 @@ async function render_evolution(size){
                 <span id="0to1Lv"></span>
             </div>
             <div class="text-aligen-center">
-                <img id ="1EvoImg"src="">
-                <h3 id ="1EvoName"></h3>
+                <img class="evo_img" id ="1EvoImg"src="">
+                <h3 class="evo_name" id ="1EvoName"></h3>
             </div>
             `;
     }
@@ -153,15 +153,15 @@ async function render_evolution(size){
         content = document.getElementById('second-evolution')
         content.innerHTML = `
             <div class="text-aligen-center">
-                <img id ="3EvoImg" src="">
-                <h3 id ="3EvoName"></h3>
+                <img class="evo_img" id ="3EvoImg" src="">
+                <h3 class="evo_name" id ="3EvoName"></h3>
             </div>
             <div id="arrow2" class="arrow">
                 <span id="1to2Lv"></span>
             </div>
                 <div class="text-aligen-center">
-                    <img id ="2EvoImg" src="">
-                    <h3 id ="2EvoName"></h3>
+                    <img class="evo_img" id ="2EvoImg" src="">
+                    <h3 class="evo_name" id ="2EvoName"></h3>
                 </div>
             `;
     }
@@ -171,11 +171,11 @@ async function render_evolution(size){
 function get_names(evolution_chain, size){
     let names = [];
     if(size >= 1)
-        names.push(erstesZeichenGroßschreiben(evolution_chain['chain']['species']['name']));
+        names.push(cap1stletter(evolution_chain['chain']['species']['name']));
     if(size >= 2)
-        names.push(erstesZeichenGroßschreiben(evolution_chain['chain']['evolves_to'][0]['species']['name']));
+        names.push(cap1stletter(evolution_chain['chain']['evolves_to'][0]['species']['name']));
     if(size == 3)
-        names.push(erstesZeichenGroßschreiben(evolution_chain['chain']['evolves_to'][0]['evolves_to'][0]['species']['name']));
+        names.push(cap1stletter(evolution_chain['chain']['evolves_to'][0]['evolves_to'][0]['species']['name']));
     return names;
 }
 
@@ -203,7 +203,7 @@ async function load_moves(pokemon){
         content.innerHTML += `
                 <li class="moves_list_element">
                     <div class="padding_right">Lv: ${lv}</div>
-                    <div class="padding_right">${erstesZeichenGroßschreiben(name)}</div>
+                    <div class="padding_right">${cap1stletter(name)}</div>
                 </li>
             `
     }

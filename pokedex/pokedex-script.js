@@ -70,7 +70,7 @@ async function loadpokemon(gen)
             <div class="id" id="id${i}"></div>
             <h2 id="name${i}"></h2>
             <div class="type_img_container">
-                <div id="type_container${i}" class="type-container">
+                <div id="type_container${i}" class="type-container-pokedex">
                 </div>
                 <img class="img" id="img${i}" src="" loading="lazy">
             </div>
@@ -101,7 +101,7 @@ function sum(gen, bool)
     }
 }
 
-function erstesZeichenGroßschreiben(text) {
+function cap1stletter(text) {
     if (text.length === 0) {
       return "";
     }
@@ -112,15 +112,15 @@ function erstesZeichenGroßschreiben(text) {
 
 function renderdetails(pokemon, i){
     document.getElementById('id'+i).innerHTML = '#' + formatierePokemonID(pokemon['id']);
-        document.getElementById('name'+i).innerHTML = erstesZeichenGroßschreiben(pokemon['name']);
+        document.getElementById('name'+i).innerHTML = cap1stletter(pokemon['name']);
         if(pokemon['types'].length == 2)
         {
             document.getElementById('type_container' + i).innerHTML = `
             <div class="type" id="type1${i}"></div>
             <div class="type" id="type2${i}"></div>`;
-            document.getElementById('type1'+i).innerHTML = erstesZeichenGroßschreiben(pokemon['types'][0]['type']['name']);
+            document.getElementById('type1'+i).innerHTML = cap1stletter(pokemon['types'][0]['type']['name']);
             addcolor_type(pokemon['types'][0]['type']['name'], document.getElementById('type1'+i));
-            document.getElementById('type2'+i).innerHTML = erstesZeichenGroßschreiben(pokemon['types'][1]['type']['name']);
+            document.getElementById('type2'+i).innerHTML = cap1stletter(pokemon['types'][1]['type']['name']);
             addcolor_type(pokemon['types'][1]['type']['name'], document.getElementById('type2'+i));
             addcolor_card(pokemon['types'][0]['type']['name'], i);
         }
@@ -128,7 +128,7 @@ function renderdetails(pokemon, i){
         {
             document.getElementById('type_container' + i).innerHTML = `
             <div class="type" id="type1${i}"></div>`;
-            document.getElementById('type1'+i).innerHTML = erstesZeichenGroßschreiben(pokemon['types'][0]['type']['name']);
+            document.getElementById('type1'+i).innerHTML = cap1stletter(pokemon['types'][0]['type']['name']);
             addcolor_type(pokemon['types'][0]['type']['name'], document.getElementById('type1'+i));
             addcolor_card(pokemon['types'][0]['type']['name'], i);
         }
